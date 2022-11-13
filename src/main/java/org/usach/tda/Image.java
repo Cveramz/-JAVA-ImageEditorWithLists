@@ -1,7 +1,6 @@
 package org.usach.tda;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class Image implements ImageOperations {
