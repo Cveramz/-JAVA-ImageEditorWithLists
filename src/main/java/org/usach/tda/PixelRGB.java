@@ -36,10 +36,13 @@ public class PixelRGB extends Pixel{
         this.blue = blue;
     }
 
+
     @Override
     public String toString() {
         return "PixelRGB{" +
-                "blue=" + blue +
+                "red=" + red +
+                ", green=" + green +
+                ", blue=" + blue +
                 ", x=" + x +
                 ", y=" + y +
                 ", depth=" + depth +

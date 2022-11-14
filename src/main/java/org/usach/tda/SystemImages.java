@@ -1,6 +1,8 @@
 package org.usach.tda;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class SystemImages {
@@ -14,10 +16,120 @@ public class SystemImages {
         this.contienePixeles = 0;
     }
 
-
-    public void addImage(Image image){
-        images.add(image);
+    //funcion para crear una lista de pixeles
+    public List<Pixel> crearListaDePixeles(int cantidadPixeles){
+        Scanner sc = new Scanner(System.in);
+        List<Pixel> pixeles = new ArrayList<>();
+        System.out.println("¿Que tipo de pixeles desea crear? 1. Bit 2. Hex 3. RGB");
+        int tipoPixel = sc.nextInt();
+        switch(tipoPixel){
+            case 1:
+                pixeles = crearListaDePixelesBit(cantidadPixeles);
+                break;
+            case 2:
+                pixeles = crearListaDePixelesHex(cantidadPixeles);
+                break;
+            case 3:
+                pixeles = crearListaDePixelesRGB(cantidadPixeles);
+                break;
+        }
+        return pixeles;
     }
+
+
+    //funcion para crear lista de pixeles tipo bit
+    public List<Pixel> crearListaDePixelesBit(int cantidadPixeles) {
+        Scanner sc = new Scanner(System.in);
+        List<Pixel> pixeles = new ArrayList<Pixel>();
+        for (int i = 0; i < cantidadPixeles; i++) {
+            System.out.println("Ingrese el valor X del pixel " + (i + 1));
+            int x = sc.nextInt();
+            System.out.println("Ingrese el valor Y del pixel " + (i + 1));
+            int y = sc.nextInt();
+            System.out.println("Ingrese el valor Depth del pixel " + (i + 1));
+            int depth = sc.nextInt();
+            System.out.println("Ingrese el valor Bit del pixel " + (i + 1));
+            int bit = sc.nextInt();
+            Pixel pixel = new PixelBit(x, y, depth, bit);
+            pixeles.add(pixel);
+        }
+        return pixeles;
+    }
+
+    //funcion para crear lista de pixeles tipo HEX
+    public List<Pixel> crearListaDePixelesHex(int cantidadPixeles) {
+        Scanner sc = new Scanner(System.in);
+        List<Pixel> pixeles = new ArrayList<Pixel>();
+        for (int i = 0; i < cantidadPixeles; i++) {
+            System.out.println("Ingrese el valor X del pixel " + (i + 1));
+            int x = sc.nextInt();
+            System.out.println("Ingrese el valor Y del pixel " + (i + 1));
+            int y = sc.nextInt();
+            System.out.println("Ingrese el valor Depth del pixel " + (i + 1));
+            int depth = sc.nextInt();
+            System.out.println("Ingrese el valor Hexadecimal del pixel " + (i + 1));
+            String hex = sc.next();
+            Pixel pixel = new PixelHex(x, y, depth, hex);
+            pixeles.add(pixel);
+        }
+        return pixeles;
+    }
+
+    //funcion para crear lista de pixeles tipo RGB
+    public List<Pixel> crearListaDePixelesRGB(int cantidadPixeles) {
+        Scanner sc = new Scanner(System.in);
+        List<Pixel> pixeles = new ArrayList<Pixel>();
+        for (int i = 0; i < cantidadPixeles; i++) {
+            System.out.println("Ingrese el valor X del pixel " + (i + 1));
+            int x = sc.nextInt();
+            System.out.println("Ingrese el valor Y del pixel " + (i + 1));
+            int y = sc.nextInt();
+            System.out.println("Ingrese el valor Depth del pixel " + (i + 1));
+            int depth = sc.nextInt();
+            System.out.println("Ingrese el valor R del pixel " + (i + 1));
+            int r = sc.nextInt();
+            System.out.println("Ingrese el valor G del pixel " + (i + 1));
+            int g = sc.nextInt();
+            System.out.println("Ingrese el valor B del pixel " + (i + 1));
+            int b = sc.nextInt();
+            Pixel pixel = new PixelRGB(x, y, depth, r, g, b);
+            pixeles.add(pixel);
+        }
+        return pixeles;
+    }
+/*
+    public void createImage(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Crear imagen");
+        System.out.println("Ingrese el largo de la imagen: ");
+        int largo = sc.nextInt();
+        System.out.println("Ingrese el ancho de la imagen: ");
+        int ancho = sc.nextInt();
+        System.out.println("Ingrese el tipo de pixel");
+        System.out.println("1. Pixel Bit 2. Pixel Hex 3. Pixel RGB");
+        int tipoPixel = sc.nextInt();
+        if (tipoPixel == 1) {
+            System.out.println("Pixel Bit");
+            Image image = new Image(largo, ancho, "Pixel Bit");
+            this.images.add(image);
+            this.contieneImagenes++;
+        } else if (tipoPixel == 2) {
+            System.out.println("Pixel Hex");
+            Image image = new Image(largo, ancho, "Pixel Hex");
+            this.images.add(image);
+            this.contieneImagenes++;
+        } else if (tipoPixel == 3) {
+            System.out.println("Pixel RGB");
+            Image image = new Image(largo, ancho, "Pixel RGB");
+            this.images.add(image);
+            this.contieneImagenes++;
+        } else {
+            System.out.println("Opcion no valida");
+            createImage();
+        }
+    }
+        */
+
 
     public void addPixel(Pixel pixel){
         pixeles.add(pixel);
