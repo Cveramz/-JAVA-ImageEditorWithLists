@@ -32,6 +32,8 @@ public class Main {
                 //===========cASO 1: CREAR IMAGEN================
                 case 1:
                     //Crear imagen
+                    systemImages.createImage();
+                    break;
 
                 //===========cASO 2: CREAR PIXEL================
                 case 2:
@@ -70,7 +72,9 @@ public class Main {
                         System.out.println("No hay imagenes creadas");
                     } else {
                         //mostrar lista de imagenes
-                        systemImages.getImages();
+                        for (int i = 0; i < systemImages.getImages().size(); i++) {
+                            System.out.println("Imagen " + (i + 1) + ": " + systemImages.getImages().get(i).toString());
+                        }
                     }
                     System.out.println("--------------------");
                     break;

@@ -16,9 +16,7 @@ public class Image implements ImageOperations {
         this.pixels = pixels;
     }
 
-    public void crearImagen(){
-        //TODO
-    }
+
 
     //otros
     public void flipH(){

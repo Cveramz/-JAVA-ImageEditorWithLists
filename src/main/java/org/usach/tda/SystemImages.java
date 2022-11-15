@@ -97,7 +97,7 @@ public class SystemImages {
         }
         return pixeles;
     }
-/*
+
     public void createImage(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Crear imagen");
@@ -105,43 +105,37 @@ public class SystemImages {
         int largo = sc.nextInt();
         System.out.println("Ingrese el ancho de la imagen: ");
         int ancho = sc.nextInt();
-        System.out.println("Ingrese el tipo de pixel");
-        System.out.println("1. Pixel Bit 2. Pixel Hex 3. Pixel RGB");
-        int tipoPixel = sc.nextInt();
-        if (tipoPixel == 1) {
-            System.out.println("Pixel Bit");
-            Image image = new Image(largo, ancho, "Pixel Bit");
-            this.images.add(image);
-            this.contieneImagenes++;
-        } else if (tipoPixel == 2) {
-            System.out.println("Pixel Hex");
-            Image image = new Image(largo, ancho, "Pixel Hex");
-            this.images.add(image);
-            this.contieneImagenes++;
-        } else if (tipoPixel == 3) {
-            System.out.println("Pixel RGB");
-            Image image = new Image(largo, ancho, "Pixel RGB");
-            this.images.add(image);
-            this.contieneImagenes++;
-        } else {
-            System.out.println("Opcion no valida");
-            createImage();
-        }
+        List<Pixel> pixeles = new ArrayList<>();
+        int cantidadPixeles = largo * ancho;
+        System.out.println("CREACION DE PIXELES");
+        pixeles = crearListaDePixeles(cantidadPixeles);
+        System.out.println("====PIXELES CREADOS====");
+        Image image = new Image(largo, ancho, pixeles);
+        System.out.println("====IMAGEN CREADA====");
+        addImage(image);
+        this.contieneImagenes++;
     }
-        */
 
 
+
+    public void addImage(Image image){
+        List<Image> aux = new ArrayList<>();
+        aux.add(image);
+        this.images = aux;
+
+    }
     public void addPixel(Pixel pixel){
-        pixeles.add(pixel);
+        this.pixeles.add(pixel);
+        this.contienePixeles++;
     }
 
-    public void removeImage(){
+    /*public void removeImage(){
         System.out.println("Remove Image");
     }
 
     public void removePixel(){
         System.out.println("Remove Pixel");
-    }
+    }*/
 
     public void replaceImage(){
         System.out.println("Replace Image");
