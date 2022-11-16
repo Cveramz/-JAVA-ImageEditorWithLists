@@ -14,6 +14,8 @@ public class SystemImages {
     public SystemImages() {
         this.contieneImagenes = 0;
         this.contienePixeles = 0;
+        this.images = new ArrayList<>();
+        this.pixeles = new ArrayList<>();
     }
 
     //funcion para crear una lista de pixeles
@@ -40,7 +42,7 @@ public class SystemImages {
     //funcion para crear lista de pixeles tipo bit
     public List<Pixel> crearListaDePixelesBit(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<Pixel>();
+        List<Pixel> pixeles = new ArrayList<>();
         for (int i = 0; i < cantidadPixeles; i++) {
             System.out.println("Ingrese el valor X del pixel " + (i + 1));
             int x = sc.nextInt();
@@ -59,7 +61,7 @@ public class SystemImages {
     //funcion para crear lista de pixeles tipo HEX
     public List<Pixel> crearListaDePixelesHex(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<Pixel>();
+        List<Pixel> pixeles = new ArrayList<>();
         for (int i = 0; i < cantidadPixeles; i++) {
             System.out.println("Ingrese el valor X del pixel " + (i + 1));
             int x = sc.nextInt();
@@ -78,7 +80,7 @@ public class SystemImages {
     //funcion para crear lista de pixeles tipo RGB
     public List<Pixel> crearListaDePixelesRGB(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<Pixel>();
+        List<Pixel> pixeles = new ArrayList<>();
         for (int i = 0; i < cantidadPixeles; i++) {
             System.out.println("Ingrese el valor X del pixel " + (i + 1));
             int x = sc.nextInt();
@@ -109,41 +111,198 @@ public class SystemImages {
         int cantidadPixeles = largo * ancho;
         System.out.println("CREACION DE PIXELES");
         pixeles = crearListaDePixeles(cantidadPixeles);
-        System.out.println("====PIXELES CREADOS====");
-        Image image = new Image(largo, ancho, pixeles);
+        int tipoDePixel;
+        //verificar tipo de pixel creado
+        if(pixeles.get(0) instanceof PixelBit){
+            tipoDePixel = 1;
+        }else if(pixeles.get(0) instanceof PixelHex){
+            tipoDePixel = 2;
+        }else{
+            tipoDePixel = 3;
+        }
+
+        Image image = new Image(largo, ancho, pixeles, tipoDePixel);
         System.out.println("====IMAGEN CREADA====");
+        System.out.println("Consejo: Para ver la imagen creada, en menu principal seleccione la opcion 3");
         addImage(image);
         this.contieneImagenes++;
     }
 
+    public void createPixel(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Crear pixel");
+        System.out.println("¿Que tipo de pixel desea crear? 1. Bit 2. Hex 3. RGB");
+        int tipoPixel = sc.nextInt();
+        switch(tipoPixel){
+            case 1:
+                List<Pixel> pixeles = new ArrayList<>();
+                pixeles = crearListaDePixelesBit(1);
+                Pixel pixel = pixeles.get(0);
+                addPixel(pixel);
+                break;
+            case 2:
+                List<Pixel> pixeles2 = new ArrayList<>();
+                pixeles2 = crearListaDePixelesHex(1);
+                Pixel pixel2 = pixeles2.get(0);
+                addPixel(pixel2);
+                break;
+            case 3:
+                List<Pixel> pixeles3 = new ArrayList<>();
+                pixeles3 = crearListaDePixelesRGB(1);
+                Pixel pixel3 = pixeles3.get(0);
+                addPixel(pixel3);
+                break;
+        }
+        System.out.println("Consejo: Para ver el pixel creado, en menu principal seleccione la opcion 4");
+    }
+    public void checktype(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Verificar tipo de imagen");
+        if (this.contieneImagenes == 0) {
+            System.out.println("No hay imagenes creadas");
+        } else {
+            System.out.println("Seleccione una de las imagenes creadas: ");
+            for (int i = 0; i < getImages().size(); i++) {
+                System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
+            }
+            int opcion = sc.nextInt();
+            Image image = getImages().get(opcion - 1);
+            //confirmacion de tipo de pixel
+            System.out.println("Elija un tipo de verificacion: ");
+            System.out.println("1. Verificar imagen tipo Bitmap");//bit
+            System.out.println("2. Verificar imagen tipo Pixmap");//RGB
+            System.out.println("3. Verificar imagen tipo Hexmap");//Hex
+            int opcion2 = sc.nextInt();
+            switch (opcion2) {
+                case 1:
+                    if (isBitmap(image)) {
+                        System.out.println("La imagen efectivamente es de tipo Bitmap");
+                    } else {
+                        System.out.println("La imagen no es de tipo Bitmap");
+                    }
+                    break;
+                case 2:
+                    if (isPixmap(image)) {
+                        System.out.println("La imagen efectivamente es de tipo Pixmap");
+                    } else {
+                        System.out.println("La imagen no es de tipo Pixmap");
+                    }
+                    break;
+                case 3:
+                    if (isHexmap(image)) {
+                        System.out.println("La imagen efectivamente es de tipo Hexmap");
+                    } else {
+                        System.out.println("La imagen no es de tipo Hexmap");
+                    }
+                    break;
+            }
+        }
+    }
 
+    public boolean isBitmap(Image image){
+        return image.getTipoPixel() == 1;
+    }
+
+    public boolean isPixmap(Image image){
+        return image.getTipoPixel() == 3;
+    }
+
+    public boolean isHexmap(Image image){
+        return image.getTipoPixel() == 2;
+    }
 
     public void addImage(Image image){
+        this.images.add(image);
+    }
+    /*public void addImage(Image image){
         List<Image> aux = new ArrayList<>();
         aux.add(image);
         this.images = aux;
 
+    }*/
+
+
+    public void checkCompression(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Verificar si una imagen esta comprimida");
+        if (this.contieneImagenes == 0) {
+            System.out.println("No hay imagenes creadas");
+        } else {
+            System.out.println("Seleccione una de las imagenes creadas: ");
+            for (int i = 0; i < getImages().size(); i++) {
+                System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
+            }
+            int opcion = sc.nextInt();
+            Image image = getImages().get(opcion - 1);
+            if(image.isCompressed()){
+                System.out.println("La imagen esta comprimida");
+            }else{
+                System.out.println("La imagen no esta comprimida");
+            }
+        }
+
     }
+
     public void addPixel(Pixel pixel){
         this.pixeles.add(pixel);
         this.contienePixeles++;
     }
 
-    /*public void removeImage(){
-        System.out.println("Remove Image");
+    public void addPixel(Pixel pixel, int index){
+        this.pixeles.add(index, pixel);
+        this.contienePixeles++;
     }
 
-    public void removePixel(){
-        System.out.println("Remove Pixel");
-    }*/
 
-    public void replaceImage(){
-        System.out.println("Replace Image");
+    public void flipHorizontal(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Voltear imagen horizontalmente");
+        if (this.contieneImagenes == 0) {
+            System.out.println("No hay imagenes creadas");
+        } else {
+            System.out.println("Seleccione una de las imagenes creadas: ");
+            for (int i = 0; i < getImages().size(); i++) {
+                System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
+            }
+            int opcion = sc.nextInt();
+            Image image = getImages().get(opcion - 1);
+            Image newImage = image.flipH();
+            //mostrar en pantalla la nueva imagen
+            System.out.println("Imagen NUEVA: ");
+            System.out.println(newImage.toString());
+            System.out.println("=====");
+            //reemplazar imagen por la nueva
+            this.images.set(opcion - 1, newImage);
+            System.out.println("Imagen volteada horizontalmente");
+        }
     }
 
-    public void replacePixel(){
-        System.out.println("Replace Pixel");
+    public void flipVertical(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Voltear imagen verticalmente");
+        if (this.contieneImagenes == 0) {
+            System.out.println("No hay imagenes creadas");
+        } else {
+            System.out.println("Seleccione una de las imagenes creadas: ");
+            for (int i = 0; i < getImages().size(); i++) {
+                System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
+            }
+            int opcion = sc.nextInt();
+            Image image = getImages().get(opcion - 1);
+            Image newImage = image.flipV();
+            //mostrar en pantalla la nueva imagen
+            System.out.println("Imagen NUEVA: ");
+            System.out.println(newImage.toString());
+            System.out.println("=====");
+            //reemplazar imagen por la nueva
+            this.images.set(opcion - 1, newImage);
+            System.out.println("Imagen volteada verticalmente");
+        }
     }
+
+
+
+    //---------OTRAS FUNCIONES-------------
 
     public int getContieneImagenes() {
         return contieneImagenes;
