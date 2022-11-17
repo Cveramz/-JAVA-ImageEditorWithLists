@@ -24,6 +24,9 @@ public class SystemImages {
         List<Pixel> pixeles = new ArrayList<>();
         System.out.println("¿Que tipo de pixeles desea crear? 1. Bit 2. Hex 3. RGB");
         int tipoPixel = sc.nextInt();
+        System.out.println("***Aviso: Para un correcto funcionamiento del programa:***");
+        System.out.println("-Las coordenadas de los pixeles deben ser ingresados en orden");
+        System.out.println("-No se pueden repetir las coordenadas de los pixeles");
         switch(tipoPixel){
             case 1:
                 pixeles = crearListaDePixelesBit(cantidadPixeles);
@@ -50,8 +53,13 @@ public class SystemImages {
             int y = sc.nextInt();
             System.out.println("Ingrese el valor Depth del pixel " + (i + 1));
             int depth = sc.nextInt();
-            System.out.println("Ingrese el valor Bit del pixel " + (i + 1));
-            int bit = sc.nextInt();
+            int bit;
+            //mientras bit sea distinto de 0 o 1
+            do {
+                System.out.println("Ingrese el valor Bit del pixel " + (i + 1));
+                System.out.println("***Recuerde que el valor Bit debe ser 0 o 1***");
+                bit = sc.nextInt();
+            } while (bit != 0 && bit != 1);
             Pixel pixel = new PixelBit(x, y, depth, bit);
             pixeles.add(pixel);
         }
@@ -88,12 +96,27 @@ public class SystemImages {
             int y = sc.nextInt();
             System.out.println("Ingrese el valor Depth del pixel " + (i + 1));
             int depth = sc.nextInt();
-            System.out.println("Ingrese el valor R del pixel " + (i + 1));
-            int r = sc.nextInt();
-            System.out.println("Ingrese el valor G del pixel " + (i + 1));
-            int g = sc.nextInt();
-            System.out.println("Ingrese el valor B del pixel " + (i + 1));
-            int b = sc.nextInt();
+            //mientras red sea menor a 0 o mayor a 255
+            int r;
+            do {
+                System.out.println("Ingrese el valor Red del pixel " + (i + 1));
+                System.out.println("***Recuerde que el valor Red debe estar entre 0 y 255***");
+                r = sc.nextInt();
+            } while (r < 0 || r > 255);
+            //mientras green sea menor a 0 o mayor a 255
+            int g;
+            do {
+                System.out.println("Ingrese el valor Green del pixel " + (i + 1));
+                System.out.println("***Recuerde que el valor Green debe estar entre 0 y 255***");
+                g = sc.nextInt();
+            } while (g < 0 || g > 255);
+            //mientras blue sea menor a 0 o mayor a 255
+            int b;
+            do {
+                System.out.println("Ingrese el valor Blue del pixel " + (i + 1));
+                System.out.println("***Recuerde que el valor Blue debe estar entre 0 y 255***");
+                b = sc.nextInt();
+            } while (b < 0 || b > 255);
             Pixel pixel = new PixelRGB(x, y, depth, r, g, b);
             pixeles.add(pixel);
         }
@@ -157,9 +180,10 @@ public class SystemImages {
     }
     public void checktype(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Verificar tipo de imagen");
+        System.out.println("--------------------");
         if (this.contieneImagenes == 0) {
             System.out.println("No hay imagenes creadas");
+            System.out.println("--------------------");
         } else {
             System.out.println("Seleccione una de las imagenes creadas: ");
             for (int i = 0; i < getImages().size(); i++) {
@@ -224,9 +248,11 @@ public class SystemImages {
 
     public void checkCompression(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("--------------------");
         System.out.println("Verificar si una imagen esta comprimida");
         if (this.contieneImagenes == 0) {
             System.out.println("No hay imagenes creadas");
+            System.out.println("--------------------");
         } else {
             System.out.println("Seleccione una de las imagenes creadas: ");
             for (int i = 0; i < getImages().size(); i++) {
@@ -256,9 +282,11 @@ public class SystemImages {
 
     public void flipHorizontal(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("--------------------");
         System.out.println("Voltear imagen horizontalmente");
         if (this.contieneImagenes == 0) {
             System.out.println("No hay imagenes creadas");
+            System.out.println("--------------------");
         } else {
             System.out.println("Seleccione una de las imagenes creadas: ");
             for (int i = 0; i < getImages().size(); i++) {
@@ -279,9 +307,11 @@ public class SystemImages {
 
     public void flipVertical(){
         Scanner sc = new Scanner(System.in);
+        System.out.println("--------------------");
         System.out.println("Voltear imagen verticalmente");
         if (this.contieneImagenes == 0) {
             System.out.println("No hay imagenes creadas");
+            System.out.println("--------------------");
         } else {
             System.out.println("Seleccione una de las imagenes creadas: ");
             for (int i = 0; i < getImages().size(); i++) {
