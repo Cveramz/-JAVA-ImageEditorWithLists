@@ -29,7 +29,8 @@ public class Main {
             System.out.println("6. Verificar si imagen es comprimida");
             System.out.println("7. Invertir horizontalmente imagen");
             System.out.println("8. Invertir verticalmente imagen");
-            System.out.println("9. Salir");
+            System.out.println("9. Recortar imagen");
+            System.out.println("10. Salir");
             System.out.println("Ingrese una opcion: ");
             Scanner sc = new Scanner(System.in);
             opcion = sc.nextInt();
@@ -91,15 +92,19 @@ public class Main {
                 case 8:
                     systemImages.flipVertical();
                     break;
-                //===========cASO 9: SALIR================
+                //===========cASO 9: RECORTAR IMAGEN================
                 case 9:
+                    systemImages.recortarImagen();
+                    break;
+                //===========cASO 9: SALIR================
+                case 10:
                     //Salir
                     break;
                 default:
                     System.out.println("Opcion no valida");
                     break;
             }
-        }while (opcion != 9);
+        }while (opcion != 10);
 
     }
 }

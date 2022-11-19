@@ -295,13 +295,11 @@ public class SystemImages {
             int opcion = sc.nextInt();
             Image image = getImages().get(opcion - 1);
             Image newImage = image.flipH();
-            //mostrar en pantalla la nueva imagen
-            System.out.println("Imagen NUEVA: ");
-            System.out.println(newImage.toString());
-            System.out.println("=====");
             //reemplazar imagen por la nueva
             this.images.set(opcion - 1, newImage);
             System.out.println("Imagen volteada horizontalmente");
+            System.out.println("Consejo: Para ver la imagen invertida, en menu principal seleccione la opcion 3");
+            System.out.println("--------------------");
         }
     }
 
@@ -320,14 +318,46 @@ public class SystemImages {
             int opcion = sc.nextInt();
             Image image = getImages().get(opcion - 1);
             Image newImage = image.flipV();
-            //mostrar en pantalla la nueva imagen
-            System.out.println("Imagen NUEVA: ");
-            System.out.println(newImage.toString());
-            System.out.println("=====");
             //reemplazar imagen por la nueva
             this.images.set(opcion - 1, newImage);
             System.out.println("Imagen volteada verticalmente");
+            System.out.println("Consejo: Para ver la imagen invertida, en menu principal seleccione la opcion 3");
+            System.out.println("--------------------");
         }
+    }
+
+    public void recortarImagen(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("--------------------");
+        System.out.println("Recortar imagen");
+        if (this.contieneImagenes == 0) {
+            System.out.println("No hay imagenes creadas");
+            System.out.println("--------------------");
+        } else {
+            System.out.println("Seleccione una de las imagenes creadas: ");
+            for (int i = 0; i < getImages().size(); i++) {
+                System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
+            }
+            int opcion = sc.nextInt();
+            Image image = getImages().get(opcion - 1);
+            int x1, y1, x2, y2;
+            System.out.println("Ingrese limite superior izquierdo (X1): ");
+            x1 = sc.nextInt();
+            System.out.println("Ingrese limite superior izquierdo (Y1): ");
+            y1 = sc.nextInt();
+            System.out.println("Ingrese limite inferior derecho (X2): ");
+            x2 = sc.nextInt();
+            System.out.println("Ingrese limite inferior derecho (Y2): ");
+            y2 = sc.nextInt();
+            Image newImage = image.crop(x1, y1, x2, y2);
+            System.out.println("Imagen recortada correctamente");
+            System.out.println("Consejo: Para ver la imagen recortada, en menu principal seleccione la opcion 3");
+            //reemplazar imagen por la nueva
+            this.images.set(opcion - 1, newImage);
+            System.out.println("--------------------");
+        }
+
+
     }
 
 

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Collections;
 
 
+
+
 public class Image implements ImageOperations {
     private int largo;
     private int ancho;
@@ -95,6 +97,30 @@ public class Image implements ImageOperations {
         Collections.reverse(lista);
         return new Image(this.largo, this.ancho,lista, this.tipoPixel);
     }
+
+    //funcion para recortar una imagen
+    public Image crop(int x1, int y1, int x2, int y2){
+        List<Pixel> lista = getPixels();
+        int newLargo = x2 - x1 + 1;
+        int newAncho = y2 - y1 + 1;
+        //primero que nada debemos ir borrando todos los pixeles que tengan un X o Y menor a x1 o y1
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getX() < x1 || lista.get(i).getY() < y1){
+                lista.remove(i);
+                i--;
+            }
+        }
+        //ahora debemos ir borrando todos los pixeles que tengan un X o Y mayor a x2 o y2
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getX() > x2 || lista.get(i).getY() > y2){
+                lista.remove(i);
+                i--;
+            }
+        }
+        //ahora crear nueva imagen
+        return new Image(newLargo, newAncho, lista, this.tipoPixel);
+    }
+
     @Override
     public String toString() {
         return "Image{" +
