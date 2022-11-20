@@ -121,6 +121,24 @@ public class Image implements ImageOperations {
         return new Image(newLargo, newAncho, lista, this.tipoPixel);
     }
 
+    //funcion para transformar un pixel tipo RGB a un pixel tipo Hex
+    public Pixel pixRGBToHex(PixelRGB pixel){
+        int r = pixel.getRed();
+        int g = pixel.getGreen();
+        int b = pixel.getBlue();
+        String hex;
+        hex=String.format("#%02x%02x%02x", r, g, b);
+        return new PixelHex(pixel.getX(), pixel.getY(), pixel.getDepth(), hex);
+    }
+
+    public Image imgRGBToHex(){
+        List<Pixel> lista = getPixels();
+        for (int i = 0; i < lista.size(); i++) {
+            lista.set(i, pixRGBToHex((PixelRGB)lista.get(i)));
+        }
+        return new Image(this.largo, this.ancho, lista, 2);
+    }
+
     @Override
     public String toString() {
         return "Image{" +

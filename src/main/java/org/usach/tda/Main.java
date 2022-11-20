@@ -30,7 +30,8 @@ public class Main {
             System.out.println("7. Invertir horizontalmente imagen");
             System.out.println("8. Invertir verticalmente imagen");
             System.out.println("9. Recortar imagen");
-            System.out.println("10. Salir");
+            System.out.println("10. Transformar imagen RGB a Hex");
+            System.out.println("11. Salir");
             System.out.println("Ingrese una opcion: ");
             Scanner sc = new Scanner(System.in);
             opcion = sc.nextInt();
@@ -96,15 +97,19 @@ public class Main {
                 case 9:
                     systemImages.recortarImagen();
                     break;
-                //===========cASO 9: SALIR================
+                //===========cASO 10: TRANSFORMAR IMAGEN RGB A HEX================
                 case 10:
+                    systemImages.transformPixmapToHexmap();
+                    break;
+                //===========cASO 11: SALIR================
+                case 11:
                     //Salir
                     break;
                 default:
                     System.out.println("Opcion no valida");
                     break;
             }
-        }while (opcion != 10);
+        }while (opcion != 11);
 
     }
 }

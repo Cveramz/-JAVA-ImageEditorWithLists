@@ -360,6 +360,38 @@ public class SystemImages {
 
     }
 
+    public void transformPixmapToHexmap(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("--------------------");
+        System.out.println("Convertir imagen RGB a HEX");
+        if (this.contieneImagenes == 0) {
+            System.out.println("No hay imagenes creadas");
+            System.out.println("--------------------");
+        } else {
+            System.out.println("Seleccione una de las imagenes creadas: ");
+            for (int i = 0; i < getImages().size(); i++) {
+                System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
+            }
+            int opcion = sc.nextInt();
+            Image image = getImages().get(opcion - 1);
+            if(image.getTipoPixel() == 1){
+                System.out.println("La imagen es tipo Bitmap");
+                System.out.println("Para utilizar esta funcion, la imagen debe ser tipo RGB");
+                //si tipopixel == 2, la imagen ya es tipo hexmap, por lo tanto no se puede convertir
+            }else if(image.getTipoPixel() == 2){
+                System.out.println("La imagen ya es tipo Hexmap");
+                System.out.println("Para utilizar esta funcion, la imagen debe ser tipo RGB");
+            }else{
+                Image newImage = image.imgRGBToHex();
+                System.out.println("Imagen convertida correctamente");
+                System.out.println("Consejo: Para ver la imagen convertida, en menu principal seleccione la opcion 3");
+                //reemplazar imagen por la nueva
+                this.images.set(opcion - 1, newImage);
+            }
+            System.out.println("--------------------");
+        }
+    }
+
 
 
     //---------OTRAS FUNCIONES-------------
