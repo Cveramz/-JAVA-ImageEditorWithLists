@@ -1,4 +1,4 @@
-package org.usach.tda;
+package org.usach;
 
 import java.util.List;
 
@@ -14,11 +14,13 @@ public class Image implements ImageOperations {
     private int tipoPixel; //1. Bit 2. Hex 3. RGB
 
 
+
     public Image(int largo, int ancho, List<Pixel> pixels, int tipoPixel) {
         this.largo = largo;
         this.ancho = ancho;
         this.pixels = pixels;
         this.tipoPixel = tipoPixel;
+
     }
 
 
@@ -133,11 +135,11 @@ public class Image implements ImageOperations {
 
     public Image imgRGBToHex(){
         List<Pixel> lista = getPixels();
-        for (int i = 0; i < lista.size(); i++) {
-            lista.set(i, pixRGBToHex((PixelRGB)lista.get(i)));
-        }
+        lista.replaceAll(pixel -> pixRGBToHex((PixelRGB) pixel));
         return new Image(this.largo, this.ancho, lista, 2);
     }
+
+
 
     @Override
     public String toString() {

@@ -1,4 +1,4 @@
-package org.usach.tda;
+package org.usach;
 
 public class PixelHex extends Pixel{
     private String hex;

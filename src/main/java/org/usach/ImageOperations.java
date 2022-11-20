@@ -1,4 +1,4 @@
-package org.usach.tda;
+package org.usach;
 
 public interface ImageOperations {
     static void isCompressed(){}

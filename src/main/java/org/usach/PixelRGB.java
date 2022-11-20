@@ -1,4 +1,4 @@
-package org.usach.tda;
+package org.usach;
 
 public class PixelRGB extends Pixel{
     private int red;

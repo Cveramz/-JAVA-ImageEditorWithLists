@@ -1,4 +1,4 @@
-package org.usach.tda;
+package org.usach;
 
 public class PixelBit extends Pixel{
     private int bit;
