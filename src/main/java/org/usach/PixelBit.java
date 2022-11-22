@@ -24,6 +24,6 @@ public class PixelBit extends Pixel{
                 ", x=" + x +
                 ", y=" + y +
                 ", depth=" + depth +
-                '}';
+                "}";
     }
 }

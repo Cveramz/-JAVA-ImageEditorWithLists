@@ -88,8 +88,12 @@ public class Image implements ImageOperations {
                 cont++;
             }
         }
-        //ahora debemos crear la nueva imagen
-        return new Image(this.largo, this.ancho,lista, this.tipoPixel);
+        //ahora arreglar las coordenadas de los pixeles
+        for (int i = 0; i < lista.size(); i++) {
+            lista.get(i).setX(i % this.largo);
+            lista.get(i).setY(i / this.largo);
+        }
+        return new Image(this.largo,this.ancho,lista,this.tipoPixel);
     }
 
     public Image flipV(){

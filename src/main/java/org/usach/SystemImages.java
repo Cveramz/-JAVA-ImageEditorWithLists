@@ -26,6 +26,7 @@ public class SystemImages {
         int tipoPixel = sc.nextInt();
         System.out.println("***Aviso: Para un correcto funcionamiento del programa:***");
         System.out.println("-Las coordenadas de los pixeles deben ser ingresados en orden");
+        System.out.println("- - - Considerando de derecha a izquierda y de arriba hacia abajo - - -");
         System.out.println("-No se pueden repetir las coordenadas de los pixeles");
         switch(tipoPixel){
             case 1:
