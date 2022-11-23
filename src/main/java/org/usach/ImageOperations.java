@@ -1,14 +1,15 @@
 package org.usach;
 
 public interface ImageOperations {
-    static void isCompressed(){}
 
+    static void Image() {}
+    static void isBitmap() {}
+    static void isPixmap() {}
+    static void isHexmap() {}
+    static void isCompressed(){}
     static void flipH(){}
-    static void invertColor(){
-        System.out.println("invertColor");
-    }
-    static void crop(int x1,int x2,int y1,int y2){
-        System.out.println("crop");
-    }
+    static void flipV(){}
+    static void crop(){}
+    static void imgRGBToHex(){}
 
 }

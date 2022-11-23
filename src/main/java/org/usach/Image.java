@@ -9,18 +9,42 @@ import java.util.Collections;
 
 public class Image implements ImageOperations {
     private int largo;
-    private int ancho;
+    private int alto;
     private List<Pixel> pixels;
     private int tipoPixel; //1. Bit 2. Hex 3. RGB
 
 
 
-    public Image(int largo, int ancho, List<Pixel> pixels, int tipoPixel) {
+    public Image(int largo, int alto, List<Pixel> pixels, int tipoPixel) {
         this.largo = largo;
-        this.ancho = ancho;
+        this.alto = alto;
         this.pixels = pixels;
         this.tipoPixel = tipoPixel;
 
+    }
+
+    public boolean isBitmap() {
+        if (tipoPixel == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isHexmap() {
+        if (tipoPixel == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isPixmap() {
+        if (tipoPixel == 3) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -32,12 +56,12 @@ public class Image implements ImageOperations {
         this.largo = largo;
     }
 
-    public int getAncho() {
-        return ancho;
+    public int getalto() {
+        return alto;
     }
 
-    public void setAncho(int ancho) {
-        this.ancho = ancho;
+    public void setalto(int alto) {
+        this.alto = alto;
     }
 
     public List<Pixel> getPixels() {
@@ -57,22 +81,22 @@ public class Image implements ImageOperations {
     }
 
     public boolean isCompressed(){
-        return this.largo * this.ancho > this.pixels.size();
+        return this.largo * this.alto > this.pixels.size();
     }
 
     public Image flipH(){
         //crear matriz de pixeles
-        Pixel[][] matriz = new Pixel[this.ancho][this.largo];
+        Pixel[][] matriz = new Pixel[this.alto][this.largo];
         int cont = 0;
         //primero rellenamos la matriz con los pixeles
-        for (int i = 0; i < this.ancho; i++) {
+        for (int i = 0; i < this.alto; i++) {
             for (int j = 0; j < this.largo; j++) {
                 matriz[i][j] = this.pixels.get(cont);
                 cont++;
             }
         }
         //ahora debemos ir invirtiendo fila por fila
-        for (int i = 0; i < this.ancho; i++) {
+        for (int i = 0; i < this.alto; i++) {
             for (int j = 0; j < this.largo/2; j++) {
                 Pixel aux = matriz[i][j];
                 matriz[i][j] = matriz[i][this.largo - j - 1];
@@ -82,7 +106,7 @@ public class Image implements ImageOperations {
         //ahora debemos pasar la matriz a una lista de pixeles
         List<Pixel> lista = this.pixels;
         cont = 0;
-        for (int i = 0; i < this.ancho; i++) {
+        for (int i = 0; i < this.alto; i++) {
             for (int j = 0; j < this.largo; j++) {
                 lista.set(cont,matriz[i][j]);
                 cont++;
@@ -93,7 +117,7 @@ public class Image implements ImageOperations {
             lista.get(i).setX(i % this.largo);
             lista.get(i).setY(i / this.largo);
         }
-        return new Image(this.largo,this.ancho,lista,this.tipoPixel);
+        return new Image(this.largo,this.alto,lista,this.tipoPixel);
     }
 
     public Image flipV(){
@@ -101,14 +125,18 @@ public class Image implements ImageOperations {
         //la lista resultante del metodo flipH
         List<Pixel> lista = this.flipH().getPixels();
         Collections.reverse(lista);
-        return new Image(this.largo, this.ancho,lista, this.tipoPixel);
+        //ahora arreglar las coordenadas Y de los pixeles
+        for (int i = 0; i < lista.size(); i++) {
+            lista.get(i).setY(i / this.largo);
+        }
+        return new Image(this.largo, this.alto,lista, this.tipoPixel);
     }
 
     //funcion para recortar una imagen
     public Image crop(int x1, int y1, int x2, int y2){
         List<Pixel> lista = getPixels();
         int newLargo = x2 - x1 + 1;
-        int newAncho = y2 - y1 + 1;
+        int newalto = y2 - y1 + 1;
         //primero que nada debemos ir borrando todos los pixeles que tengan un X o Y menor a x1 o y1
         for (int i = 0; i < lista.size(); i++) {
             if(lista.get(i).getX() < x1 || lista.get(i).getY() < y1){
@@ -124,7 +152,7 @@ public class Image implements ImageOperations {
             }
         }
         //ahora crear nueva imagen
-        return new Image(newLargo, newAncho, lista, this.tipoPixel);
+        return new Image(newLargo, newalto, lista, this.tipoPixel);
     }
 
     //funcion para transformar un pixel tipo RGB a un pixel tipo Hex
@@ -140,7 +168,7 @@ public class Image implements ImageOperations {
     public Image imgRGBToHex(){
         List<Pixel> lista = getPixels();
         lista.replaceAll(pixel -> pixRGBToHex((PixelRGB) pixel));
-        return new Image(this.largo, this.ancho, lista, 2);
+        return new Image(this.largo, this.alto, lista, 2);
     }
 
 
@@ -149,7 +177,7 @@ public class Image implements ImageOperations {
     public String toString() {
         return "Image{" +
                 "largo=" + largo +
-                ", ancho=" + ancho +
+                ", alto=" + alto +
                 ", pixels=" + pixels +
                 ", tipoPixel=" + tipoPixel +
                 '}';

@@ -225,26 +225,21 @@ public class SystemImages {
     }
 
     public boolean isBitmap(Image image){
-        return image.getTipoPixel() == 1;
+        return image.isBitmap();
     }
 
     public boolean isPixmap(Image image){
-        return image.getTipoPixel() == 3;
+        return image.isPixmap();
     }
 
     public boolean isHexmap(Image image){
-        return image.getTipoPixel() == 2;
+        return image.isHexmap();
     }
 
     public void addImage(Image image){
         this.images.add(image);
     }
-    /*public void addImage(Image image){
-        List<Image> aux = new ArrayList<>();
-        aux.add(image);
-        this.images = aux;
 
-    }*/
 
 
     public void checkCompression(){
