@@ -11,5 +11,5 @@ run {
 }
 
 application {
-    mainClass = 'src.main.java.org.usach.Main'
+    mainClass = 'org.usach.Main'
 }
