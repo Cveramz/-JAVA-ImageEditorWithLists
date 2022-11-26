@@ -2,14 +2,13 @@ package org.usach;
 
 public interface ImageOperations {
 
-    static void Image() {}
-    static void isBitmap() {}
-    static void isPixmap() {}
-    static void isHexmap() {}
-    static void isCompressed(){}
-    static void flipH(){}
-    static void flipV(){}
-    static void crop(){}
-    static void imgRGBToHex(){}
+    public boolean isBitmap();
+    public boolean isPixmap();
+    public boolean isHexmap();
+    public boolean isCompressed();
+    public Image flipH();
+    public Image flipV();
+    public Image crop(int x1, int y1, int x2, int y2);
+    public Image imgRGBToHex();
 
 }

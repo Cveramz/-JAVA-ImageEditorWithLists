@@ -23,6 +23,7 @@ public class Image implements ImageOperations {
 
     }
 
+    @Override
     public boolean isBitmap() {
         if (tipoPixel == 1) {
             return true;
@@ -30,7 +31,7 @@ public class Image implements ImageOperations {
             return false;
         }
     }
-
+    @Override
     public boolean isHexmap() {
         if (tipoPixel == 2) {
             return true;
@@ -38,7 +39,7 @@ public class Image implements ImageOperations {
             return false;
         }
     }
-
+    @Override
     public boolean isPixmap() {
         if (tipoPixel == 3) {
             return true;
@@ -79,11 +80,11 @@ public class Image implements ImageOperations {
     public void setTipoPixel(int tipoPixel) {
         this.tipoPixel = tipoPixel;
     }
-
+    @Override
     public boolean isCompressed(){
         return this.largo * this.alto > this.pixels.size();
     }
-
+    @Override
     public Image flipH(){
         //crear matriz de pixeles
         Pixel[][] matriz = new Pixel[this.alto][this.largo];
@@ -119,7 +120,7 @@ public class Image implements ImageOperations {
         }
         return new Image(this.largo,this.alto,lista,this.tipoPixel);
     }
-
+    @Override
     public Image flipV(){
         //para invertir una imagen verticalmente, podemos simplemente invertir
         //la lista resultante del metodo flipH
@@ -133,6 +134,7 @@ public class Image implements ImageOperations {
     }
 
     //funcion para recortar una imagen
+    @Override
     public Image crop(int x1, int y1, int x2, int y2){
         List<Pixel> lista = getPixels();
         int newLargo = x2 - x1 + 1;
@@ -164,7 +166,7 @@ public class Image implements ImageOperations {
         hex=String.format("#%02x%02x%02x", r, g, b);
         return new PixelHex(pixel.getX(), pixel.getY(), pixel.getDepth(), hex);
     }
-
+    @Override
     public Image imgRGBToHex(){
         List<Pixel> lista = getPixels();
         lista.replaceAll(pixel -> pixRGBToHex((PixelRGB) pixel));

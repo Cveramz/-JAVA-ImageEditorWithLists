@@ -11,7 +11,7 @@
 *.log
 *.ctxt
 .mtj.tmp/
-*.jar
+# *.jar -> Esto lo comento porque el gradle lo necesita
 *.war
 *.nar
 *.ear
