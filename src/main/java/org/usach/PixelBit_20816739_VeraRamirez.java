@@ -1,9 +1,9 @@
 package org.usach;
 
-public class PixelBit extends Pixel{
+public class PixelBit_20816739_VeraRamirez extends Pixel_20816739_VeraRamirez {
     private int bit;
 
-    public PixelBit(int x, int y, int depth, int bit) {
+    public PixelBit_20816739_VeraRamirez(int x, int y, int depth, int bit) {
         super(x, y, depth);
         this.bit = bit;
     }

@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         //crear objeto de la clase SystemImages
-        SystemImages systemImages = new SystemImages();
+        Sistema_20816739_VeraRamirez systemImages = new Sistema_20816739_VeraRamirez();
 
 
         //ahora en adelante viene el menu
@@ -70,7 +70,7 @@ public class Main {
                         System.out.println("No hay pixeles creados");
                     } else {
                         //mostrar lista de pixeles
-                        List<Pixel> pixelesCreados = systemImages.getPixeles();
+                        List<Pixel_20816739_VeraRamirez> pixelesCreados = systemImages.getPixeles();
                         for (int i = 0; i < pixelesCreados.size(); i++) {
                             System.out.println("Pixel " + (i + 1) + ": " + pixelesCreados.get(i).toString());
                         }

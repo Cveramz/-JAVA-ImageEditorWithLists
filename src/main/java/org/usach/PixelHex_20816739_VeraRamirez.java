@@ -1,9 +1,9 @@
 package org.usach;
 
-public class PixelHex extends Pixel{
+public class PixelHex_20816739_VeraRamirez extends Pixel_20816739_VeraRamirez {
     private String hex;
 
-    public PixelHex(int x, int y, int depth, String hex) {
+    public PixelHex_20816739_VeraRamirez(int x, int y, int depth, String hex) {
         super(x, y, depth);
         this.hex = hex;
     }

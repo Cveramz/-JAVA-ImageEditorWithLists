@@ -1,11 +1,11 @@
 package org.usach;
 
-public abstract class Pixel {
+public abstract class Pixel_20816739_VeraRamirez {
     protected int x;
     protected int y;
     protected int depth;
 
-    public Pixel(int x, int y, int depth) {
+    public Pixel_20816739_VeraRamirez(int x, int y, int depth) {
         this.x = x;
         this.y = y;
         this.depth = depth;

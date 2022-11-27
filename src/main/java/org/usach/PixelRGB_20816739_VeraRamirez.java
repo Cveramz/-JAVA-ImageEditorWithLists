@@ -1,11 +1,11 @@
 package org.usach;
 
-public class PixelRGB extends Pixel{
+public class PixelRGB_20816739_VeraRamirez extends Pixel_20816739_VeraRamirez {
     private int red;
     private int green;
     private int blue;
 
-    public PixelRGB(int x, int y, int depth, int red, int green, int blue) {
+    public PixelRGB_20816739_VeraRamirez(int x, int y, int depth, int red, int green, int blue) {
         super(x, y, depth);
         this.red = red;
         this.green = green;

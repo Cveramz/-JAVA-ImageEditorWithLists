@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class SystemImages {
+public class Sistema_20816739_VeraRamirez {
     private int contieneImagenes;
     private int contienePixeles;
-    private List<Image> images;
-    private List<Pixel> pixeles;
+    private List<Image_20816739_VeraRamirez> images;
+    private List<Pixel_20816739_VeraRamirez> pixeles;
 
-    public SystemImages() {
+    public Sistema_20816739_VeraRamirez() {
         this.contieneImagenes = 0;
         this.contienePixeles = 0;
         this.images = new ArrayList<>();
@@ -19,9 +19,9 @@ public class SystemImages {
     }
 
     //funcion para crear una lista de pixeles
-    public List<Pixel> crearListaDePixeles(int cantidadPixeles){
+    public List<Pixel_20816739_VeraRamirez> crearListaDePixeles(int cantidadPixeles){
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<>();
+        List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
         System.out.println("¿Que tipo de pixeles desea crear? 1. Bit 2. Hex 3. RGB");
         int tipoPixel = sc.nextInt();
         System.out.println("***Aviso: Para un correcto funcionamiento del programa:***");
@@ -44,9 +44,9 @@ public class SystemImages {
 
 
     //funcion para crear lista de pixeles tipo bit
-    public List<Pixel> crearListaDePixelesBit(int cantidadPixeles) {
+    public List<Pixel_20816739_VeraRamirez> crearListaDePixelesBit(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<>();
+        List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
         for (int i = 0; i < cantidadPixeles; i++) {
             System.out.println("Ingrese el valor X del pixel " + (i + 1));
             int x = sc.nextInt();
@@ -61,16 +61,16 @@ public class SystemImages {
                 System.out.println("***Recuerde que el valor Bit debe ser 0 o 1***");
                 bit = sc.nextInt();
             } while (bit != 0 && bit != 1);
-            Pixel pixel = new PixelBit(x, y, depth, bit);
+            Pixel_20816739_VeraRamirez pixel = new PixelBit_20816739_VeraRamirez(x, y, depth, bit);
             pixeles.add(pixel);
         }
         return pixeles;
     }
 
     //funcion para crear lista de pixeles tipo HEX
-    public List<Pixel> crearListaDePixelesHex(int cantidadPixeles) {
+    public List<Pixel_20816739_VeraRamirez> crearListaDePixelesHex(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<>();
+        List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
         for (int i = 0; i < cantidadPixeles; i++) {
             System.out.println("Ingrese el valor X del pixel " + (i + 1));
             int x = sc.nextInt();
@@ -80,16 +80,16 @@ public class SystemImages {
             int depth = sc.nextInt();
             System.out.println("Ingrese el valor Hexadecimal del pixel " + (i + 1));
             String hex = sc.next();
-            Pixel pixel = new PixelHex(x, y, depth, hex);
+            Pixel_20816739_VeraRamirez pixel = new PixelHex_20816739_VeraRamirez(x, y, depth, hex);
             pixeles.add(pixel);
         }
         return pixeles;
     }
 
     //funcion para crear lista de pixeles tipo RGB
-    public List<Pixel> crearListaDePixelesRGB(int cantidadPixeles) {
+    public List<Pixel_20816739_VeraRamirez> crearListaDePixelesRGB(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
-        List<Pixel> pixeles = new ArrayList<>();
+        List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
         for (int i = 0; i < cantidadPixeles; i++) {
             System.out.println("Ingrese el valor X del pixel " + (i + 1));
             int x = sc.nextInt();
@@ -118,7 +118,7 @@ public class SystemImages {
                 System.out.println("***Recuerde que el valor Blue debe estar entre 0 y 255***");
                 b = sc.nextInt();
             } while (b < 0 || b > 255);
-            Pixel pixel = new PixelRGB(x, y, depth, r, g, b);
+            Pixel_20816739_VeraRamirez pixel = new PixelRGB_20816739_VeraRamirez(x, y, depth, r, g, b);
             pixeles.add(pixel);
         }
         return pixeles;
@@ -131,21 +131,21 @@ public class SystemImages {
         int largo = sc.nextInt();
         System.out.println("Ingrese el ancho de la imagen: ");
         int ancho = sc.nextInt();
-        List<Pixel> pixeles = new ArrayList<>();
+        List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
         int cantidadPixeles = largo * ancho;
         System.out.println("CREACION DE PIXELES");
         pixeles = crearListaDePixeles(cantidadPixeles);
         int tipoDePixel;
         //verificar tipo de pixel creado
-        if(pixeles.get(0) instanceof PixelBit){
+        if(pixeles.get(0) instanceof PixelBit_20816739_VeraRamirez){
             tipoDePixel = 1;
-        }else if(pixeles.get(0) instanceof PixelHex){
+        }else if(pixeles.get(0) instanceof PixelHex_20816739_VeraRamirez){
             tipoDePixel = 2;
         }else{
             tipoDePixel = 3;
         }
 
-        Image image = new Image(largo, ancho, pixeles, tipoDePixel);
+        Image_20816739_VeraRamirez image = new Image_20816739_VeraRamirez(largo, ancho, pixeles, tipoDePixel);
         System.out.println("====IMAGEN CREADA====");
         System.out.println("Consejo: Para ver la imagen creada, en menu principal seleccione la opcion 3");
         addImage(image);
@@ -159,21 +159,21 @@ public class SystemImages {
         int tipoPixel = sc.nextInt();
         switch(tipoPixel){
             case 1:
-                List<Pixel> pixeles = new ArrayList<>();
+                List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
                 pixeles = crearListaDePixelesBit(1);
-                Pixel pixel = pixeles.get(0);
+                Pixel_20816739_VeraRamirez pixel = pixeles.get(0);
                 addPixel(pixel);
                 break;
             case 2:
-                List<Pixel> pixeles2 = new ArrayList<>();
+                List<Pixel_20816739_VeraRamirez> pixeles2 = new ArrayList<>();
                 pixeles2 = crearListaDePixelesHex(1);
-                Pixel pixel2 = pixeles2.get(0);
+                Pixel_20816739_VeraRamirez pixel2 = pixeles2.get(0);
                 addPixel(pixel2);
                 break;
             case 3:
-                List<Pixel> pixeles3 = new ArrayList<>();
+                List<Pixel_20816739_VeraRamirez> pixeles3 = new ArrayList<>();
                 pixeles3 = crearListaDePixelesRGB(1);
-                Pixel pixel3 = pixeles3.get(0);
+                Pixel_20816739_VeraRamirez pixel3 = pixeles3.get(0);
                 addPixel(pixel3);
                 break;
         }
@@ -191,7 +191,7 @@ public class SystemImages {
                 System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
             }
             int opcion = sc.nextInt();
-            Image image = getImages().get(opcion - 1);
+            Image_20816739_VeraRamirez image = getImages().get(opcion - 1);
             //confirmacion de tipo de pixel
             System.out.println("Elija un tipo de verificacion: ");
             System.out.println("1. Verificar imagen tipo Bitmap");//bit
@@ -224,19 +224,19 @@ public class SystemImages {
         }
     }
 
-    public boolean isBitmap(Image image){
+    public boolean isBitmap(Image_20816739_VeraRamirez image){
         return image.isBitmap();
     }
 
-    public boolean isPixmap(Image image){
+    public boolean isPixmap(Image_20816739_VeraRamirez image){
         return image.isPixmap();
     }
 
-    public boolean isHexmap(Image image){
+    public boolean isHexmap(Image_20816739_VeraRamirez image){
         return image.isHexmap();
     }
 
-    public void addImage(Image image){
+    public void addImage(Image_20816739_VeraRamirez image){
         this.images.add(image);
     }
 
@@ -255,7 +255,7 @@ public class SystemImages {
                 System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
             }
             int opcion = sc.nextInt();
-            Image image = getImages().get(opcion - 1);
+            Image_20816739_VeraRamirez image = getImages().get(opcion - 1);
             if(image.isCompressed()){
                 System.out.println("La imagen esta comprimida");
             }else{
@@ -265,12 +265,12 @@ public class SystemImages {
 
     }
 
-    public void addPixel(Pixel pixel){
+    public void addPixel(Pixel_20816739_VeraRamirez pixel){
         this.pixeles.add(pixel);
         this.contienePixeles++;
     }
 
-    public void addPixel(Pixel pixel, int index){
+    public void addPixel(Pixel_20816739_VeraRamirez pixel, int index){
         this.pixeles.add(index, pixel);
         this.contienePixeles++;
     }
@@ -289,8 +289,8 @@ public class SystemImages {
                 System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
             }
             int opcion = sc.nextInt();
-            Image image = getImages().get(opcion - 1);
-            Image newImage = image.flipH();
+            Image_20816739_VeraRamirez image = getImages().get(opcion - 1);
+            Image_20816739_VeraRamirez newImage = image.flipH();
             //reemplazar imagen por la nueva
             this.images.set(opcion - 1, newImage);
             System.out.println("Imagen volteada horizontalmente");
@@ -312,8 +312,8 @@ public class SystemImages {
                 System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
             }
             int opcion = sc.nextInt();
-            Image image = getImages().get(opcion - 1);
-            Image newImage = image.flipV();
+            Image_20816739_VeraRamirez image = getImages().get(opcion - 1);
+            Image_20816739_VeraRamirez newImage = image.flipV();
             //reemplazar imagen por la nueva
             this.images.set(opcion - 1, newImage);
             System.out.println("Imagen volteada verticalmente");
@@ -335,7 +335,7 @@ public class SystemImages {
                 System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
             }
             int opcion = sc.nextInt();
-            Image image = getImages().get(opcion - 1);
+            Image_20816739_VeraRamirez image = getImages().get(opcion - 1);
             int x1, y1, x2, y2;
             System.out.println("Ingrese limite superior izquierdo (X1): ");
             x1 = sc.nextInt();
@@ -345,7 +345,7 @@ public class SystemImages {
             x2 = sc.nextInt();
             System.out.println("Ingrese limite inferior derecho (Y2): ");
             y2 = sc.nextInt();
-            Image newImage = image.crop(x1, y1, x2, y2);
+            Image_20816739_VeraRamirez newImage = image.crop(x1, y1, x2, y2);
             System.out.println("Imagen recortada correctamente");
             System.out.println("Consejo: Para ver la imagen recortada, en menu principal seleccione la opcion 3");
             //reemplazar imagen por la nueva
@@ -369,7 +369,7 @@ public class SystemImages {
                 System.out.println("Imagen " + (i + 1) + ": " + getImages().get(i).toString());
             }
             int opcion = sc.nextInt();
-            Image image = getImages().get(opcion - 1);
+            Image_20816739_VeraRamirez image = getImages().get(opcion - 1);
             if(image.getTipoPixel() == 1){
                 System.out.println("La imagen es tipo Bitmap");
                 System.out.println("Para utilizar esta funcion, la imagen debe ser tipo RGB");
@@ -378,7 +378,7 @@ public class SystemImages {
                 System.out.println("La imagen ya es tipo Hexmap");
                 System.out.println("Para utilizar esta funcion, la imagen debe ser tipo RGB");
             }else{
-                Image newImage = image.imgRGBToHex();
+                Image_20816739_VeraRamirez newImage = image.imgRGBToHex();
                 System.out.println("Imagen convertida correctamente");
                 System.out.println("Consejo: Para ver la imagen convertida, en menu principal seleccione la opcion 3");
                 //reemplazar imagen por la nueva
@@ -408,19 +408,19 @@ public class SystemImages {
         this.contienePixeles = contienePixeles;
     }
 
-    public List<Image> getImages() {
+    public List<Image_20816739_VeraRamirez> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(List<Image_20816739_VeraRamirez> images) {
         this.images = images;
     }
 
-    public List<Pixel> getPixeles() {
+    public List<Pixel_20816739_VeraRamirez> getPixeles() {
         return pixeles;
     }
 
-    public void setPixeles(List<Pixel> pixeles) {
+    public void setPixeles(List<Pixel_20816739_VeraRamirez> pixeles) {
         this.pixeles = pixeles;
     }
 
