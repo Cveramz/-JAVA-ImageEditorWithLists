@@ -180,6 +180,33 @@ public class Sistema_20816739_VeraRamirez {
         this.contieneImagenes++;
     }
 
+    /**
+     * Metodo que permite agregar 3 imagenes predeterminadas al inicio del programa.
+     */
+    public void crearImagenesPredeterminadas(){
+        List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
+        pixeles.add(new PixelBit_20816739_VeraRamirez(0, 0, 10, 1));
+        pixeles.add(new PixelBit_20816739_VeraRamirez(1, 0, 1, 0));
+        pixeles.add(new PixelBit_20816739_VeraRamirez(0, 1, 1, 0));
+        pixeles.add(new PixelBit_20816739_VeraRamirez(1, 1, 1, 1));
+        Image_20816739_VeraRamirez image = new Image_20816739_VeraRamirez(2, 2, pixeles, 1);
+        addImage(image);
+        pixeles = new ArrayList<>();
+        pixeles.add(new PixelHex_20816739_VeraRamirez(2, 2, 1, "FF0F0F"));
+        pixeles.add(new PixelHex_20816739_VeraRamirez(3, 2, 1, "00F0F0"));
+        pixeles.add(new PixelHex_20816739_VeraRamirez(2, 3, 1, "0F0F0F"));
+        pixeles.add(new PixelHex_20816739_VeraRamirez(3, 3, 1, "FFF000"));
+        image = new Image_20816739_VeraRamirez(2, 2, pixeles, 2);
+        addImage(image);
+        pixeles = new ArrayList<>();
+        pixeles.add(new PixelRGB_20816739_VeraRamirez(5,5, 1, 255, 255, 255));
+        pixeles.add(new PixelRGB_20816739_VeraRamirez(10, 5, 1, 0, 0, 0));
+        pixeles.add(new PixelRGB_20816739_VeraRamirez(5, 10, 1, 0, 255, 0));
+        pixeles.add(new PixelRGB_20816739_VeraRamirez(10, 10, 1, 255, 255, 255));
+        image = new Image_20816739_VeraRamirez(2, 2, pixeles, 3);
+        addImage(image);
+        this.contieneImagenes = 3;
+    }
 
     /**
      * Metodo que permite crear una imagen solicitando informacion al usuario

@@ -12,7 +12,25 @@ public class Main {
     public static void main(String[] args) {
         //crear objeto de la clase SystemImages
         Sistema_20816739_VeraRamirez systemImages = new Sistema_20816739_VeraRamirez();
+        int opciontest;
 
+        do {
+            System.out.println("======================================");
+            System.out.println("Bienvenido al proyecto de laboratorio 2022");
+            System.out.println("Creado por Carlos Vera Ramirez");
+            System.out.println("======================================");
+            System.out.println("¿Desea crear imagenes predeterminadas? 1=si 2=no");
+            Scanner sc = new Scanner(System.in);
+            opciontest = sc.nextInt();
+            if (opciontest == 1) {
+                systemImages.crearImagenesPredeterminadas();
+                System.out.println("Imagenes predeterminadas creadas");
+            } else if (opciontest == 2) {
+                System.out.println("No se crearan imagenes predeterminadas");
+            } else {
+                System.out.println("Opcion no valida");
+            }
+        } while (opciontest != 1 && opciontest != 2);
 
         //ahora en adelante viene el menu
         int opcion;
