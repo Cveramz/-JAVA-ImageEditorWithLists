@@ -5,8 +5,14 @@ import java.util.List;
 import java.util.Collections;
 
 
+//DOCUMENTAR PROGRAMA CON JAVADOC
 
-
+/**
+ * Clase que representa un sistema de imagenes
+ * @author Carlos Vera Ramirez
+ * @version 1.0
+ * @since 2022-11-06
+ */
 public class Image_20816739_VeraRamirez implements ImageOperations_20816739_VeraRamirez {
     private int largo;
     private int alto;
@@ -14,7 +20,13 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
     private int tipoPixel; //1. Bit 2. Hex 3. RGB
 
 
-
+    /**
+     * Constructor de la clase Image
+     * @param largo largo de la imagen
+     * @param alto alto de la imagen
+     * @param pixels lista de pixeles de la imagen
+     * @param tipoPixel tipo de pixel de la imagen
+     */
     public Image_20816739_VeraRamirez(int largo, int alto, List<Pixel_20816739_VeraRamirez> pixels, int tipoPixel) {
         this.largo = largo;
         this.alto = alto;
@@ -23,6 +35,10 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
 
     }
 
+    /**
+     * Metodo que verifica si la imagen es de pixeles Bit
+     * @return boolean
+     */
     @Override
     public boolean isBitmap() {
         if (tipoPixel == 1) {
@@ -31,6 +47,11 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
             return false;
         }
     }
+
+    /**
+     * Metodo que verifica si la imagen es de pixeles Hex
+     * @return boolean
+     */
     @Override
     public boolean isHexmap() {
         if (tipoPixel == 2) {
@@ -39,6 +60,11 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
             return false;
         }
     }
+
+    /**
+     * Metodo que verifica si la imagen es de pixeles RGB
+     * @return boolean
+     */
     @Override
     public boolean isPixmap() {
         if (tipoPixel == 3) {
@@ -49,41 +75,83 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
     }
 
 
+    /**
+     * Metodo que retorna el largo de la imagen
+     * @return largo (int)
+     */
     public int getLargo() {
         return largo;
     }
 
+    /**
+     * Metodo que modifica el atributo Largo
+     * @param largo nuevo largo de la imagen (int)
+     */
     public void setLargo(int largo) {
         this.largo = largo;
     }
 
+    /**
+     * Metodo que retorna el alto de la imagen
+     * @return alto (int)
+     */
     public int getalto() {
         return alto;
     }
 
+    /**
+     * Metodo que modifica el atributo Alto
+     * @param alto nuevo alto de la imagen
+     */
     public void setalto(int alto) {
         this.alto = alto;
     }
 
+    /**
+     * Metodo que retorna la lista de pixeles de la imagen
+     * @return pixels (List<Pixel>)
+     */
     public List<Pixel_20816739_VeraRamirez> getPixels() {
         return pixels;
     }
 
+    /**
+     * Metodo que modifica la lista de pixeles de la imagen
+     * @param pixels nueva lista de pixeles de la imagen (List<Pixel>)
+     */
     public void setPixels(List<Pixel_20816739_VeraRamirez> pixels) {
         this.pixels = pixels;
     }
 
+    /**
+     * Metodo que retorna el tipo de pixel de la imagen
+     * @return tipoPixel (int)
+     */
     public int getTipoPixel() {
         return tipoPixel;
     }
 
+    /**
+     * Metodo que modifica el tipo de pixel de la imagen
+     * @param tipoPixel nuevo tipo de pixel de la imagen (int)
+     */
     public void setTipoPixel(int tipoPixel) {
         this.tipoPixel = tipoPixel;
     }
+
+    /**
+     * Metodo que retorna comprueba si la imagen esta comprimida
+     * @return boolean
+     */
     @Override
     public boolean isCompressed(){
         return this.largo * this.alto > this.pixels.size();
     }
+
+    /**
+     * Metodo que modifica la imagen, invierte la imagen horizontalmente
+     * @return Image
+     */
     @Override
     public Image_20816739_VeraRamirez flipH(){
         //crear matriz de pixeles
@@ -120,6 +188,11 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
         }
         return new Image_20816739_VeraRamirez(this.largo,this.alto,lista,this.tipoPixel);
     }
+
+    /**
+     * Metodo que modifica la imagen, invierte la imagen verticalmente
+     * @return Image
+     */
     @Override
     public Image_20816739_VeraRamirez flipV(){
         //para invertir una imagen verticalmente, podemos simplemente invertir
@@ -133,7 +206,14 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
         return new Image_20816739_VeraRamirez(this.largo, this.alto,lista, this.tipoPixel);
     }
 
-    //funcion para recortar una imagen
+    /**
+     * Metodo que modifica la imagen, recorta la imagen
+     * @param x1 coordenada x del primer pixel
+     * @param x2 coordenada x del segundo pixel
+     * @param y1 coordenada y del primer pixel
+     * @param y2 coordenada y del segundo pixel
+     * @return Image
+     */
     @Override
     public Image_20816739_VeraRamirez crop(int x1, int y1, int x2, int y2){
         List<Pixel_20816739_VeraRamirez> lista = getPixels();
@@ -157,7 +237,11 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
         return new Image_20816739_VeraRamirez(newLargo, newalto, lista, this.tipoPixel);
     }
 
-    //funcion para transformar un pixel tipo RGB a un pixel tipo Hex
+    /**
+     * Metodo que modifica un pixel, cambia el tipo de pixel de RGB a Hex.
+     * @param pixel pixel a modificar
+     * @return Image
+     */
     public Pixel_20816739_VeraRamirez pixRGBToHex(PixelRGB_20816739_VeraRamirez pixel){
         int r = pixel.getRed();
         int g = pixel.getGreen();
@@ -166,6 +250,11 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
         hex=String.format("#%02x%02x%02x", r, g, b);
         return new PixelHex_20816739_VeraRamirez(pixel.getX(), pixel.getY(), pixel.getDepth(), hex);
     }
+
+    /**
+     * Metodo que modifica todos los pixeles, cambia el tipo de pixel de RGB a Hex.
+     * @return Image
+     */
     @Override
     public Image_20816739_VeraRamirez imgRGBToHex(){
         List<Pixel_20816739_VeraRamirez> lista = getPixels();
@@ -175,6 +264,10 @@ public class Image_20816739_VeraRamirez implements ImageOperations_20816739_Vera
 
 
 
+    /**
+     * Metodo que transforma la informacion a un String
+     * @return String
+     */
     @Override
     public String toString() {
         return "Image{" +

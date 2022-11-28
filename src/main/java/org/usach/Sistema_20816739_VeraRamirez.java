@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase que representa el sistema en donde se almacenan las imagenes y pixeles
+ * @author Carlos Vera Ramirez
+ * @version 1.0
+ * @since 2022-11-06
+ */
 
 public class Sistema_20816739_VeraRamirez {
     private int contieneImagenes;
@@ -11,6 +17,9 @@ public class Sistema_20816739_VeraRamirez {
     private List<Image_20816739_VeraRamirez> images;
     private List<Pixel_20816739_VeraRamirez> pixeles;
 
+    /**
+     * Constructor de la clase Sistema
+     */
     public Sistema_20816739_VeraRamirez() {
         this.contieneImagenes = 0;
         this.contienePixeles = 0;
@@ -18,7 +27,11 @@ public class Sistema_20816739_VeraRamirez {
         this.pixeles = new ArrayList<>();
     }
 
-    //funcion para crear una lista de pixeles
+    /**
+     * Metodo que permite crear una lista de pixeles
+     * @param cantidadPixeles Cantidad de pixeles que se desea crear
+     * @return Retorna la lista de pixeles creada (List<Pixel>)
+     */
     public List<Pixel_20816739_VeraRamirez> crearListaDePixeles(int cantidadPixeles){
         Scanner sc = new Scanner(System.in);
         List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
@@ -43,7 +56,11 @@ public class Sistema_20816739_VeraRamirez {
     }
 
 
-    //funcion para crear lista de pixeles tipo bit
+    /**
+     * Metodo que permite crear una lista de pixeles de tipo Bit
+     * @param cantidadPixeles Cantidad de pixeles que se desea crear
+     * @return Retorna la lista de pixeles creada (List<Pixel>)
+     */
     public List<Pixel_20816739_VeraRamirez> crearListaDePixelesBit(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
         List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
@@ -67,7 +84,11 @@ public class Sistema_20816739_VeraRamirez {
         return pixeles;
     }
 
-    //funcion para crear lista de pixeles tipo HEX
+    /**
+     * Metodo que permite crear una lista de pixeles de tipo Hex
+     * @param cantidadPixeles Cantidad de pixeles que se desea crear
+     * @return Retorna la lista de pixeles creada (List<Pixel>)
+     */
     public List<Pixel_20816739_VeraRamirez> crearListaDePixelesHex(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
         List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
@@ -86,7 +107,11 @@ public class Sistema_20816739_VeraRamirez {
         return pixeles;
     }
 
-    //funcion para crear lista de pixeles tipo RGB
+    /**
+     * Metodo que permite crear una lista de pixeles de tipo RGB
+     * @param cantidadPixeles Cantidad de pixeles que se desea crear
+     * @return Retorna la lista de pixeles creada (List<Pixel>)
+     */
     public List<Pixel_20816739_VeraRamirez> crearListaDePixelesRGB(int cantidadPixeles) {
         Scanner sc = new Scanner(System.in);
         List<Pixel_20816739_VeraRamirez> pixeles = new ArrayList<>();
@@ -124,6 +149,9 @@ public class Sistema_20816739_VeraRamirez {
         return pixeles;
     }
 
+    /**
+     * Metodo que permite crear una imagen solicitando informacion al usuario
+     */
     public void createImage(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Crear imagen");
@@ -152,6 +180,10 @@ public class Sistema_20816739_VeraRamirez {
         this.contieneImagenes++;
     }
 
+
+    /**
+     * Metodo que permite crear una imagen solicitando informacion al usuario
+     */
     public void createPixel(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Crear pixel");
@@ -179,6 +211,10 @@ public class Sistema_20816739_VeraRamirez {
         }
         System.out.println("Consejo: Para ver el pixel creado, en menu principal seleccione la opcion 4");
     }
+
+    /**
+     * Metodo que permite verificar el tipo de imagen
+     */
     public void checktype(){
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------");
@@ -224,24 +260,44 @@ public class Sistema_20816739_VeraRamirez {
         }
     }
 
+    /**
+     * Metodo que permite verificar si una imagen es de tipo Bitmap
+     * @param image
+     * @return boolean
+     */
     public boolean isBitmap(Image_20816739_VeraRamirez image){
         return image.isBitmap();
     }
 
+    /**
+     * Metodo que permite verificar si una imagen es de tipo Pixmap
+     * @param image
+     * @return boolean
+     */
     public boolean isPixmap(Image_20816739_VeraRamirez image){
         return image.isPixmap();
     }
 
+    /**
+     * Metodo que permite verificar si una imagen es de tipo Hexmap
+     * @param image
+     * @return boolean
+     */
     public boolean isHexmap(Image_20816739_VeraRamirez image){
         return image.isHexmap();
     }
 
+    /**
+     * Metodo que permite agregar una imagen a la lista de imagenes
+     * @param image
+     */
     public void addImage(Image_20816739_VeraRamirez image){
         this.images.add(image);
     }
 
-
-
+    /**
+     * Metodo que permite verificar la compresion de una imagen que seleccione dentro el usuario
+     */
     public void checkCompression(){
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------");
@@ -265,17 +321,19 @@ public class Sistema_20816739_VeraRamirez {
 
     }
 
+    /**
+     * Metodo que permite agregar un pixel al listado de pixeles
+     * @param pixel
+     */
     public void addPixel(Pixel_20816739_VeraRamirez pixel){
         this.pixeles.add(pixel);
         this.contienePixeles++;
     }
 
-    public void addPixel(Pixel_20816739_VeraRamirez pixel, int index){
-        this.pixeles.add(index, pixel);
-        this.contienePixeles++;
-    }
 
-
+    /**
+     * Metodo que permite realizar un flip horizontal a una imagen que el usuario seleccione
+     */
     public void flipHorizontal(){
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------");
@@ -299,6 +357,9 @@ public class Sistema_20816739_VeraRamirez {
         }
     }
 
+    /**
+     * Metodo que permite realizar un flip vertical a una imagen que el usuario seleccione
+     */
     public void flipVertical(){
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------");
@@ -322,6 +383,9 @@ public class Sistema_20816739_VeraRamirez {
         }
     }
 
+    /**
+     * Metodo que permite recortar una imagen seleccionada
+     */
     public void recortarImagen(){
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------");
@@ -356,6 +420,9 @@ public class Sistema_20816739_VeraRamirez {
 
     }
 
+    /**
+     * Metodo que permite transformar un pixmap a un hexmap seleccionado.
+     */
     public void transformPixmapToHexmap(){
         Scanner sc = new Scanner(System.in);
         System.out.println("--------------------");
@@ -392,38 +459,74 @@ public class Sistema_20816739_VeraRamirez {
 
     //---------OTRAS FUNCIONES-------------
 
+    /**
+     * Metodo que retorna el numero que confirma si tiene imagenes o no.
+     * @return contieneImagenes (int)
+     */
     public int getContieneImagenes() {
         return contieneImagenes;
     }
 
+    /**
+     * Metodo que permite modificar el numero que confirma si tiene imagenes o no.
+     * @param contieneImagenes (int)
+     */
     public void setContieneImagenes(int contieneImagenes) {
         this.contieneImagenes = contieneImagenes;
     }
 
+    /**
+     * Metodo que retorna el numero que confirma si tiene pixeles o no.
+     * @return contienePixeles (int)
+     */
     public int getContienePixeles() {
         return contienePixeles;
     }
 
+    /**
+     * Metodo que permite modificar el numero que confirma si tiene pixeles o no.
+     * @param contienePixeles (int)
+     */
     public void setContienePixeles(int contienePixeles) {
         this.contienePixeles = contienePixeles;
     }
 
+    /**
+     * Metodos que retorna las imagenes creadas por el usuario.
+     * @return images (List<Image>)
+     */
     public List<Image_20816739_VeraRamirez> getImages() {
         return images;
     }
 
+    /**
+     * Metodo que permite modificar las imagenes creadas por el usuario.
+     * @param images (List<Image>)
+     */
     public void setImages(List<Image_20816739_VeraRamirez> images) {
         this.images = images;
     }
 
+    /**
+     * Metodo que retorna los pixeles creados por el usuario.
+     * @return pixels (List<Pixel>)
+     */
     public List<Pixel_20816739_VeraRamirez> getPixeles() {
         return pixeles;
     }
 
+    /**
+     * Metodo que permite modificar los pixeles creados por el usuario.
+     * @param pixeles (List<Pixel>)
+     */
     public void setPixeles(List<Pixel_20816739_VeraRamirez> pixeles) {
         this.pixeles = pixeles;
     }
 
+    /**
+     * Metodo que transforma la informacion a un String
+     * @return String
+     */
     @Override
     public String toString() {
         return "SystemImages{" +
